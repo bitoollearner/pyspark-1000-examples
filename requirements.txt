@@ -1,0 +1,22 @@
+# Same pinned versions used by the book. Every example in the notebooks was
+# verified against this exact stack.
+
+# --- Spark ---------------------------------------------------------------
+pyspark==3.5.3
+delta-spark==3.2.0
+
+# --- data / generation ---------------------------------------------------
+pandas==2.2.3
+pyarrow==17.0.0
+numpy==2.0.2
+Faker==30.8.2
+
+# --- authoring -----------------------------------------------------------
+jupyter==1.1.1
+jupyterlab==4.2.5
+ipykernel==6.29.5
+
+# --- quality -------------------------------------------------------------
+black==24.10.0
+pytest==8.3.3
+chispa==0.10.1

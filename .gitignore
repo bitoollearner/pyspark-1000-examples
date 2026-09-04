@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.pytest_cache/
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+# Comment the line below if you want to commit executed notebooks with outputs.
+# Default: keep notebook outputs empty for cleaner diffs.
+# (Notebooks in this repo are shipped with empty outputs.)
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+spark-events/
+.crc
+_SUCCESS
+
+# Data (regenerable via scripts/generate_datasets.py)
+datasets/*.csv
+datasets/*.json
+datasets/*.parquet
+datasets/*.avro
+datasets/*.orc
+datasets/generated/
+!datasets/README.md
+!datasets/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Docker
+.env
+
+# Build
+dist/
+build/

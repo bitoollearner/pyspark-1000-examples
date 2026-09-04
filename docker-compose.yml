@@ -1,0 +1,36 @@
+# ---------------------------------------------------------------------------
+# Reader environment — single Spark local[*] container.
+#
+# Usage:
+#   docker compose build spark          # first time (~5 min)
+#   docker compose up -d spark          # start container
+#   docker compose exec spark bash      # get a shell inside
+#   docker compose down                 # stop
+# ---------------------------------------------------------------------------
+
+services:
+  spark:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: pyspark1000:local
+    container_name: pyspark1000
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ivy-cache:/home/spark/.ivy2
+    ports:
+      - "4040:4040"    # Spark UI
+      - "8888:8888"    # JupyterLab
+    environment:
+      PYSPARK_PYTHON: python3
+      PYSPARK_DRIVER_PYTHON: python3
+      SPARK_LOCAL_IP: 127.0.0.1
+      DATA_DIR: /workspace/datasets
+    # Keep alive so you can attach a shell or IDE
+    command: ["tail", "-f", "/dev/null"]
+
+volumes:
+  ivy-cache:
