@@ -1,0 +1,8 @@
+customer_id,customer_name,city,signup_date,credit_limit
+1,Alice Chen,Denver,2023-04-01,5000
+2,Bob "The Builder" Ray,Austin,2023-04-02,7500
+3,Carla Diaz,Miami,not-a-date,8000
+
+4,Dan Okafor,Lagos,2023-04-05,1200,EXTRA_COLUMN
+5,Eve Brandt,,2023-04-06,
+6,Frank Ito,Oslo,2023-04-07,unknown

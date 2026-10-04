@@ -1,0 +1,3 @@
+product_id|product_name|price
+1|Cafe Grinder|89.99
+2|Naive Notebook|4.50

@@ -1,0 +1,4 @@
+order_id, region , amount
+1,  North  ,120.0
+2, South,340.0
+3,East  ,90.0

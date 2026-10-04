@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<customers>
+  <customer id="1">
+    <name>Michael Benitez</name>
+    <city>West Nicholasborough</city>
+  </customer>
+  <customer id="2">
+    <name>David Fowler</name>
+    <city>Staceyland</city>
+  </customer>
+  <customer id="3">
+    <name>Sean Lawrence</name>
+    <city>Lake Ryan</city>
+  </customer>
+  <customer id="4">
+    <name>Melissa Melton</name>
+    <city>Colemouth</city>
+  </customer>
+  <customer id="5">
+    <name>Hannah Wood</name>
+    <city>Lindamouth</city>
+  </customer>
+  <customer id="6">
+    <name>Michael Nunez</name>
+    <city>East Benjamin</city>
+  </customer>
+  <customer id="7">
+    <name>Jessica Johnson</name>
+    <city>Garciaside</city>
+  </customer>
+  <customer id="8">
+    <name>Heather Valencia</name>
+    <city>Kyleland</city>
+  </customer>
+  <customer id="9">
+    <name>Emily Williams</name>
+    <city>North Desiree</city>
+  </customer>
+  <customer id="10">
+    <name>Karen Chan</name>
+    <city>Rebekahland</city>
+  </customer>
+  <customer id="11">
+    <name>Joseph Pittman</name>
+    <city>Stuartview</city>
+  </customer>
+  <customer id="12">
+    <name>Richard Powers</name>
+    <city>West Cynthia</city>
+  </customer>
+  <customer id="13">
+    <name>Mark Lopez</name>
+    <city>Jamesburgh</city>
+  </customer>
+  <customer id="14">
+    <name>Melissa Williams</name>
+    <city>Morganshire</city>
+  </customer>
+  <customer id="15">
+    <name>Paula Sosa</name>
+    <city>South Chelsea</city>
+  </customer>
+  <customer id="16">
+    <name>Kevin Carter</name>
+    <city>New Terri</city>
+  </customer>
+  <customer id="17">
+    <name>Keith Conrad</name>
+    <city>Frazierland</city>
+  </customer>
+  <customer id="18">
+    <name>Kerry Miller</name>
+    <city>South Sarahport</city>
+  </customer>
+  <customer id="19">
+    <name>Tyler Hayes</name>
+    <city>West Justin</city>
+  </customer>
+  <customer id="20">
+    <name>Trevor Duran</name>
+    <city>Singletonport</city>
+  </customer>
+</customers>
