@@ -1,0 +1,139 @@
+# syntax=docker/dockerfile:1
+# ============================================================================
+#  PySpark: 1,000 Examples - PRACTICE environment (full datasets)
+#
+#  A ready-to-practice Spark + Jupyter environment. Readers type the
+#  examples from the book themselves, run them, and compare output.
+#
+#  Contains:
+#    - Spark 3.5.3 + Delta Lake 3.2.0 + pinned Python deps
+#    - 7 core CSV datasets (customers, products, orders, order_items,
+#      employees, web_events, transactions)
+#    - 10+ raw/ messy files (dirty CSV, multiline JSON, nested JSONL,
+#      fixed-width TXT, XML, pipe-delimited, Hive-partitioned dirs...)
+#    - Binary-format variants: parquet, orc, avro, delta (built using the
+#      installed Spark as a Dockerfile RUN step)
+#    - 22 empty chapter folders with a starter scratch.ipynb in each
+#    - JupyterLab auto-starting on container launch, port 8888
+#    - No token required (safe only for local use)
+#
+#  Reader runs:
+#    docker run --rm -p 8888:8888 -p 4040:4040 \
+#      -v %cd%/practice:/workspace/practice \
+#      bilearner/pyspark1000-practice:1.0
+# ============================================================================
+
+FROM python:3.11-slim-bookworm
+
+# --- pinned stack -----------------------------------------------------------
+ARG SPARK_VERSION=3.5.3
+ARG HADOOP_PROFILE=3
+ARG SCALA_BINARY=2.12
+ARG DELTA_VERSION=3.2.0
+ARG SPARK_XML_VERSION=0.18.0
+
+ENV SPARK_VERSION=${SPARK_VERSION} \
+    SPARK_HOME=/opt/spark \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
+    PYSPARK_PYTHON=python3 \
+    PYSPARK_DRIVER_PYTHON=python3 \
+    SPARK_LOCAL_IP=127.0.0.1 \
+    DATA_DIR=/workspace/datasets
+ENV PATH="${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${JAVA_HOME}/bin:${PATH}"
+
+# --- system deps ------------------------------------------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        openjdk-17-jre-headless \
+        curl \
+        ca-certificates \
+        procps \
+        tini \
+    && rm -rf /var/lib/apt/lists/*
+
+# --- Spark ------------------------------------------------------------------
+RUN curl -fsSL \
+      "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_PROFILE}.tgz" \
+      -o /tmp/spark.tgz \
+    && mkdir -p ${SPARK_HOME} \
+    && tar -xzf /tmp/spark.tgz -C ${SPARK_HOME} --strip-components=1 \
+    && rm /tmp/spark.tgz
+
+# --- JARs baked in ----------------------------------------------------------
+ARG MAVEN=https://repo1.maven.org/maven2
+RUN set -eux; \
+    cd ${SPARK_HOME}/jars; \
+    curl -fsSLO "${MAVEN}/org/apache/spark/spark-avro_${SCALA_BINARY}/${SPARK_VERSION}/spark-avro_${SCALA_BINARY}-${SPARK_VERSION}.jar"; \
+    curl -fsSLO "${MAVEN}/com/databricks/spark-xml_${SCALA_BINARY}/${SPARK_XML_VERSION}/spark-xml_${SCALA_BINARY}-${SPARK_XML_VERSION}.jar"; \
+    curl -fsSLO "${MAVEN}/io/delta/delta-spark_${SCALA_BINARY}/${DELTA_VERSION}/delta-spark_${SCALA_BINARY}-${DELTA_VERSION}.jar"; \
+    curl -fsSLO "${MAVEN}/io/delta/delta-storage/${DELTA_VERSION}/delta-storage-${DELTA_VERSION}.jar"
+
+# --- Python deps ------------------------------------------------------------
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+# --- Spark config -----------------------------------------------------------
+COPY conf/spark-defaults.conf ${SPARK_HOME}/conf/spark-defaults.conf
+COPY conf/log4j2.properties ${SPARK_HOME}/conf/log4j2.properties
+
+# --- non-root user ---------------------------------------------------------
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g ${GID} spark 2>/dev/null || true \
+    && useradd -m -u ${UID} -g ${GID} -s /bin/bash spark 2>/dev/null || true \
+    && mkdir -p /workspace /workspace/spark-events /workspace/datasets \
+                /workspace/practice /workspace/scripts /workspace/conf \
+                /home/spark/.ivy2 \
+    && chown -R ${UID}:${GID} /workspace /home/spark
+
+# --- Content layer: datasets (core + raw), scripts, docs -------------------
+# The datasets/ folder was populated on the host by build-and-push.ps1 with
+# the output of `generate.py --core` (CSVs + raw/ messy files). The generator
+# itself ships in the same folder so --formats can run below.
+COPY --chown=${UID}:${GID} datasets/ /workspace/datasets/
+COPY --chown=${UID}:${GID} scripts/ /workspace/scripts/
+COPY --chown=${UID}:${GID} docs/ /workspace/docs/
+COPY --chown=${UID}:${GID} practice-template/ /workspace/practice/
+COPY --chown=${UID}:${GID} README.md /workspace/README.md
+
+# --- Generate binary-format datasets using the installed Spark -------------
+# Uses the Spark + Delta JARs installed above and the CSVs just copied in.
+# Produces /workspace/datasets/formats/{parquet,orc,avro,delta}/ which
+# Chapters 4, 5, and 21 depend on. Clean up Spark metastore afterward.
+RUN cd /workspace \
+    && python datasets/generate.py --formats --out /workspace/datasets \
+    && rm -rf /workspace/metastore_db /workspace/derby.log /workspace/spark-warehouse \
+    && chown -R ${UID}:${GID} /workspace/datasets
+
+# --- Jupyter configuration --------------------------------------------------
+# Opens straight to the practice folder; no token.
+# Safe for LOCAL use only - don't expose port 8888 to the internet.
+RUN mkdir -p /home/spark/.jupyter \
+    && printf "%s\n" \
+        "c.ServerApp.ip = '0.0.0.0'" \
+        "c.ServerApp.port = 8888" \
+        "c.ServerApp.token = ''" \
+        "c.ServerApp.password = ''" \
+        "c.ServerApp.allow_root = True" \
+        "c.ServerApp.root_dir = '/workspace'" \
+        "c.ServerApp.open_browser = False" \
+        "c.LabApp.default_url = '/lab/tree/practice'" \
+        > /home/spark/.jupyter/jupyter_lab_config.py \
+    && chown -R ${UID}:${GID} /home/spark/.jupyter
+
+WORKDIR /workspace
+USER ${UID}:${GID}
+
+EXPOSE 4040 8888
+
+# --- entrypoint: start JupyterLab -------------------------------------------
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["jupyter", "lab"]
+
+# Image labels for Docker Hub
+LABEL org.opencontainers.image.title="PySpark 1,000 Examples - Practice"
+LABEL org.opencontainers.image.description="PySpark 3.5.3 + Delta Lake + Jupyter + full seeded datasets (CSV, Parquet, ORC, Avro, Delta, XML). Practice environment for the book."
+LABEL org.opencontainers.image.source="https://github.com/bitoollearner/pyspark-1000-examples"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.version="1.0"
