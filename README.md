@@ -188,4 +188,4 @@ If this book saved you time, the best thing you can do is:
 
 ---
 
-Made with care by @bilearner. Reach out on YouTube for tutorials and updates.
+Made with care by [Bi Learner](https://www.youtube.com/@bilearner). Reach out on YouTube for tutorials and updates.
