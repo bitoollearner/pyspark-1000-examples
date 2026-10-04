@@ -1,7 +1,7 @@
 # Setup Guide
 
 The complete setup for running the 1,000 examples from
-**[PySpark: 1,000 Examples](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)** on your laptop.
+**[PySpark: 1,000 Examples](https://www.amazon.com/dp/B0DXXXXXXX)** on your laptop.
 
 **What you need:** A laptop with 4 GB free RAM and 8 GB free disk space.
 Windows 10/11, macOS, or Linux all work.
@@ -268,7 +268,7 @@ docker pull bilearner/pyspark1000-practice:1.0
 
 - **Chapter 1 scratch notebook** (`practice/chapter-01-introduction/scratch.ipynb`) is your first stop
 - Browse **[docs/chapters/](chapters/)** to find a specific example by name
-- Read the book on **[Amazon Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)** for the explanations behind each example
+- Read the book on **[Amazon Kindle](https://www.amazon.com/dp/B0DXXXXXXX)** for the explanations behind each example
 - Found a bug or typo? [Open an issue](../../issues/new/choose)
 
 Happy learning.

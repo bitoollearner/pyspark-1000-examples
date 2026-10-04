@@ -1,19 +1,19 @@
-# PySpark: 1,000 Examples — Practice Environment
+# PySpark: 1,000 Examples â€” Practice Environment
 
 A ready-to-practice Spark + Jupyter environment for the book
-**[PySpark: 1,000 Examples](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)**.
+**[PySpark: 1,000 Examples](https://www.amazon.com/dp/B0DXXXXXXX)**.
 
 ## What this image gives you
 
-- Spark 3.5.3, Delta Lake 3.2.0, Python 3.11, OpenJDK 17 — identical to the book
+- Spark 3.5.3, Delta Lake 3.2.0, Python 3.11, OpenJDK 17 â€” identical to the book
 - JupyterLab 4.2.5, auto-opens to the `practice/` folder
 - Pre-generated seeded datasets (customers, products, orders, etc.)
 - 22 pre-created chapter folders, each with a starter notebook
 
 ## What this image does NOT contain
 
-- The example code or solutions — you type those yourself from the book
-- Any text, explanation, or content from the book — read those on Kindle
+- The example code or solutions â€” you type those yourself from the book
+- Any text, explanation, or content from the book â€” read those on Kindle
 
 The point is to practice: open the book, read Example N, type the Solution
 code into your Jupyter notebook, run it, compare your output to the book's.
@@ -49,7 +49,7 @@ docker run --rm `
 Open http://localhost:8888/lab in your browser. JupyterLab appears, already
 showing the 22 chapter folders.
 
-Pick a chapter folder → open `scratch.ipynb` → run the Chapter setup cell →
+Pick a chapter folder â†’ open `scratch.ipynb` â†’ run the Chapter setup cell â†’
 start typing examples from the book.
 
 ## Workflow
@@ -57,7 +57,7 @@ start typing examples from the book.
 1. Open the book on Kindle, pick an example (say Chapter 10, Example 388)
 2. Open `chapter-10-aggregations/scratch.ipynb` in JupyterLab
 3. Type the Solution code from the book into a new cell
-4. Shift+Enter — compare your output to the book's Output section
+4. Shift+Enter â€” compare your output to the book's Output section
 5. Read the book's Explanation, Common Mistake, Recommendation, Pattern Insight
 
 ## Persisting your work
@@ -80,7 +80,7 @@ spark.read.json("/workspace/datasets/events.json")
 spark.read.parquet("/workspace/datasets/sales.parquet")
 ```
 
-All datasets are pre-generated and ready — no setup needed.
+All datasets are pre-generated and ready â€” no setup needed.
 
 ## Stopping
 
@@ -97,4 +97,4 @@ docker rmi bitoollearner/pyspark1000-practice:1.0
 
 MIT. Image contents include third-party software under their own licenses.
 Book content (narrative, explanations, example solutions) is copyright
-© 2026 Bi Learner — available on [Amazon Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN).
+Â© 2026 @bilearner â€” available on [Amazon Kindle](https://www.amazon.com/dp/B0DXXXXXXX).
