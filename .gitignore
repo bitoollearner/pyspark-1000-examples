@@ -1,53 +1,44 @@
-# Python
+# ===========================================================================
+#  .gitignore for the pyspark-1000-examples companion repo
+# ===========================================================================
+
+# --- Reader's local mount folder (seeded from the Docker image at runtime)
+practice/
+
+# --- Generated datasets (regenerable; see datasets/generate.py)
+datasets/*.csv
+datasets/raw/
+datasets/formats/
+
+# --- Python
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
+*.egg-info/
 .pytest_cache/
 .venv/
-*.egg-info/
+venv/
 
-# Jupyter
+# --- Jupyter
 .ipynb_checkpoints/
-# Comment the line below if you want to commit executed notebooks with outputs.
-# Default: keep notebook outputs empty for cleaner diffs.
-# (Notebooks in this repo are shipped with empty outputs.)
 
-# Spark
-spark-warehouse/
+# --- Spark local state
 metastore_db/
 derby.log
+spark-warehouse/
 spark-events/
-.crc
-_SUCCESS
 
-# Data (regenerable via scripts/generate_datasets.py)
-datasets/*.csv
-datasets/*.json
-datasets/*.parquet
-datasets/*.avro
-datasets/*.orc
-datasets/generated/
-!datasets/README.md
-!datasets/.gitkeep
-
-# IDE
-.idea/
-.vscode/
-*.swp
-.DS_Store
-
-# Docker
-.env
-
-# Build
-dist/
-build/
-
-practice/
-
-# Build artifacts and local-only folders
-practice/
+# --- Build artifacts and logs
 *.log
-__pycache__/
-.ipynb_checkpoints/
+build.log
 
+# --- IDE and OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Docker build cache
+.docker-cache/
