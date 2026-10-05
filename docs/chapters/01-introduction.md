@@ -1,115 +1,111 @@
 # Chapter 1: Introduction to PySpark
 
-**20 examples** (1â€“20)
+**20 examples** (1-20)
 
-Difficulty mix: 16 Beginner Â· 4 Intermediate
+Difficulty mix: 16 Beginner . 4 Intermediate
 
-[ðŸ“” Open the notebook](../../notebooks/01-introduction.ipynb) Â· [ðŸ“– Read the chapter on Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+[Open the practice notebook](../../notebooks/01-introduction.ipynb) . [Read the chapter on Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
 ## Examples
 
 ### Example 1: Confirm which Spark you are actually running
-*Beginner* Â· `SparkSession.version`
+*Beginner* . `SparkSession.version`
 
-Before debugging anything, establish which Spark version is running. Version mismatches between a local install and a...
+Before debugging anything, establish which Spark version is running. Version
 
 ### Example 2: Create a DataFrame from Python data
-*Beginner* Â· `createDataFrame`, `show`
+*Beginner* . `createDataFrame, show`
 
 You want a small, throwaway DataFrame to test an idea, without touching a file.
 
 ### Example 3: Inspect a schema before trusting it
-*Beginner* Â· `printSchema`, `dtypes`
+*Beginner* . `printSchema, dtypes`
 
-You have a DataFrame and need to know its column names and types before writing transformations against it.
+You have a DataFrame and need to know its column names and types before writing
 
 ### Example 4: Count rows without materialising them
-*Beginner* Â· `count`
+*Beginner* . `count`
 
-You need to know how many rows a DataFrame holds â€” for a sanity check, or to confirm a filter did what you expected.
+You need to know how many rows a DataFrame holds - for a sanity check, or to
 
 ### Example 5: Look at data without pulling it all back
-*Beginner* Â· `show`, `take`, `limit`
+*Beginner* . `show, take, limit`
 
-You want to eyeball a few rows of a large DataFrame to check a transformation worked.
+You want to eyeball a few rows of a large DataFrame to check a transformation
 
 ### Example 6: Read your first file
-*Beginner* Â· `read.csv`, `option`
+*Beginner* . `read.csv, option`
 
-Load the book's `orders.csv` into a DataFrame with correct column names and sensible types.
+Load the book's `orders.csv` into a DataFrame with correct column names and
 
 ### Example 7: Watch a transformation do nothing
-*Beginner* Â· `filter`, `select`
+*Beginner* . `filter, select`
 
 Demonstrate that building a chain of transformations performs no work at all.
 
 ### Example 8: Force execution with an action
-*Beginner* Â· `count`, `collect`, `show`
+*Beginner* . `count, collect, show`
 
 Take the lazy chain from Example 7 and make it actually run.
 
 ### Example 9: Read the plan Spark intends to run
-*Intermediate* Â· `explain`
+*Intermediate* . `explain`
 
 See what Spark will actually execute, rather than what you wrote.
 
 ### Example 10: Find out how many partitions you have
-*Intermediate* Â· `rdd.getNumPartitions`
+*Intermediate* . `rdd.getNumPartitions`
 
 Determine how many pieces Spark has split your DataFrame into.
 
 ### Example 11: Watch a shuffle change the partition count
-*Intermediate* Â· `groupBy`, `repartition`
+*Intermediate* . `groupBy, repartition`
 
 Show that a wide transformation reorganises data across partitions.
 
 ### Example 12: Understand why collect() is dangerous
-*Beginner* Â· `collect`, `limit`
+*Beginner* . `collect, limit`
 
-Retrieve rows into Python safely, and understand what makes the unsafe version unsafe.
+Retrieve rows into Python safely, and understand what makes the unsafe version
 
 ### Example 13: Chain transformations readably
-*Beginner* Â· `filter`, `withColumn`, `select`
+*Beginner* . `filter, withColumn, select`
 
 Build a multi-step transformation that stays readable and reviewable.
 
 ### Example 14: The same aggregation in both
-*Beginner* Â· `groupBy`, `agg`
+*Beginner* . `groupBy, agg`
 
-You know how to group and sum in pandas. Write the same thing in PySpark and see what actually changes.
+You know how to group and sum in pandas. Write the same thing in PySpark and
 
 ### Example 15: Convert a small result to pandas
-*Beginner* Â· `toPandas`, `limit`
+*Beginner* . `toPandas, limit`
 
 You want to plot a small aggregated result with a Python charting library.
 
 ### Example 16: Live without a row index
-*Beginner* Â· `monotonically_increasing_id`, `row_number`
+*Beginner* . `monotonically_increasing_id, row_number`
 
 You need a per-row identifier, but Spark has no pandas-style index.
 
 ### Example 17: Nothing is mutable
-*Beginner* Â· `withColumn`
+*Beginner* . `withColumn`
 
 Understand why adding a column appears to do nothing.
 
 ### Example 18: Inspect the configuration actually in force
-*Intermediate* Â· `spark.conf.get`
+*Intermediate* . `spark.conf.get`
 
-Confirm which settings your session is really using, rather than the ones you believe you set.
+Confirm which settings your session is really using, rather than the ones you
 
 ### Example 19: Confirm the Spark UI is available
-*Beginner* Â· `spark.conf.get`
+*Beginner* . `spark.conf.get`
 
 Find out whether the web UI is enabled, so you can inspect jobs while they run.
 
 ### Example 20: Stop a session deliberately
-*Beginner* Â· `SparkSession.stop`, `getActiveSession`
+*Beginner* . `SparkSession.stop, getActiveSession`
 
-Release Spark's resources when a script finishes, and understand what that means for anything still holding the session.
-
----
-
-â† [Back to main index](../../README.md)
+Release Spark's resources when a script finishes, and understand what that

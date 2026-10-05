@@ -1,415 +1,411 @@
 # Chapter 3: DataFrame Basics
 
-**80 examples** (51â€“130)
+**80 examples** (51-130)
 
-Difficulty mix: 29 Beginner Â· 38 Intermediate Â· 13 Advanced
+Difficulty mix: 13 Advanced . 29 Beginner . 38 Intermediate
 
-[ðŸ“” Open the notebook](../../notebooks/03-dataframe-basics.ipynb) Â· [ðŸ“– Read the chapter on Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+[Open the practice notebook](../../notebooks/03-dataframe-basics.ipynb) . [Read the chapter on Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
 ## Examples
 
 ### Example 51: Build from Row objects
-*Beginner* Â· `Row`, `createDataFrame`
+*Beginner* . `Row, createDataFrame`
 
-Construct a DataFrame where each record is named rather than positional, so the code reads clearly and column order c...
+Construct a DataFrame where each record is named rather than positional, so the
 
 ### Example 52: Build from a list of dictionaries
-*Beginner* Â· `createDataFrame`
+*Beginner* . `createDataFrame`
 
-You have records as Python dictionaries â€” from a JSON API, say â€” and want a DataFrame without restructuring them first.
+You have records as Python dictionaries - from a JSON API, say - and want a
 
 ### Example 53: Convert a pandas DataFrame
-*Beginner* Â· `createDataFrame`
+*Beginner* . `createDataFrame`
 
-You have a small pandas DataFrame â€” from a spreadsheet or a library that returns one â€” and need it in Spark.
+You have a small pandas DataFrame - from a spreadsheet or a library that
 
 ### Example 54: Create an empty DataFrame with a schema
-*Intermediate* Â· `createDataFrame`, `StructType`
+*Intermediate* . `createDataFrame, StructType`
 
-Produce a DataFrame with correct structure but no rows, to serve as a starting point for a union or an empty-result p...
+Produce a DataFrame with correct structure but no rows, to serve as a starting
 
 ### Example 55: Generate a numeric DataFrame
-*Beginner* Â· `spark.range`
+*Beginner* . `spark.range`
 
-Create a DataFrame of sequential numbers for testing, benchmarking, or as a skeleton to join against.
+Create a DataFrame of sequential numbers for testing, benchmarking, or as a
 
 ### Example 56: Build from an RDD
-*Intermediate* Â· `parallelize`, `createDataFrame`
+*Intermediate* . `parallelize, createDataFrame`
 
-Convert an RDD â€” from legacy code or a text-processing step â€” into a DataFrame with a proper schema.
+Convert an RDD - from legacy code or a text-processing step - into a DataFrame
 
 ### Example 57: Declare a schema with StructType
-*Intermediate* Â· `StructType`, `StructField`
+*Intermediate* . `StructType, StructField`
 
 State a DataFrame's structure explicitly rather than letting Spark infer it.
 
 ### Example 58: Declare a schema with a DDL string
-*Intermediate* Â· `createDataFrame`
+*Intermediate* . `createDataFrame`
 
-Write the same schema in a compact form that fits on one line and is readable by people who know SQL.
+Write the same schema in a compact form that fits on one line and is readable
 
 ### Example 59: Read a schema back as an object
-*Intermediate* Â· `df.schema`, `simpleString`
+*Intermediate* . `df.schema, simpleString`
 
 Extract a DataFrame's schema programmatically, to compare or reuse it.
 
 ### Example 60: Compare inference against declaration
-*Intermediate* Â· `createDataFrame`, `simpleString`
+*Intermediate* . `createDataFrame, simpleString`
 
-See concretely how an inferred schema differs from a declared one over the same data.
+See concretely how an inferred schema differs from a declared one over the same
 
 ### Example 61: Enforce non-nullability
-*Intermediate* Â· `StructField`
+*Intermediate* . `StructField`
 
-Declare that a column must never be null, and observe what Spark does when it is.
+Declare that a column must never be null, and observe what Spark does when it
 
 ### Example 62: Serialise a schema and reuse it
-*Advanced* Â· `schema.json`, `StructType.fromJson`
+*Advanced* . `schema.json, StructType.fromJson`
 
 Store a schema outside your code so several jobs can share one definition.
 
 ### Example 63: Attach metadata to a field
-*Advanced* Â· `StructField`, `metadata`
+*Advanced* . `StructField, metadata`
 
-Carry documentation alongside a column so it travels with the data rather than living in a separate wiki.
+Carry documentation alongside a column so it travels with the data rather than
 
 ### Example 64: Nest a struct inside a schema
-*Intermediate* Â· `StructType`, `col`
+*Intermediate* . `StructType, col`
 
-Model a record with a nested object â€” an address inside a customer â€” and read a field out of it.
+Model a record with a nested object - an address inside a customer - and read a
 
 ### Example 65: Declare an array column
-*Intermediate* Â· `ArrayType`, `size`
+*Intermediate* . `ArrayType, size`
 
 Store a variable-length list inside a single column and query its length.
 
 ### Example 66: Declare a map column
-*Intermediate* Â· `MapType`
+*Intermediate* . `MapType`
 
 Store key-value attributes whose keys are not known when the schema is written.
 
 ### Example 67: Print a deeply nested schema
-*Beginner* Â· `printSchema`
+*Beginner* . `printSchema`
 
 Inspect the structure of a DataFrame containing nesting inside nesting.
 
 ### Example 68: Choose between schema, dtypes, and columns
-*Beginner* Â· `schema`, `dtypes`, `columns`
+*Beginner* . `schema, dtypes, columns`
 
 Pick the right accessor for the structural information you actually need.
 
 ### Example 69: Rename every column at once
-*Intermediate* Â· `toDF`
+*Intermediate* . `toDF`
 
-Replace all column names in one operation â€” after reading a headerless file, for instance.
+Replace all column names in one operation - after reading a headerless file,
 
 ### Example 70: Get the shape of a DataFrame
-*Beginner* Â· `count`, `len`
+*Beginner* . `count, len`
 
 Produce the row and column counts, the equivalent of pandas' `.shape`.
 
 ### Example 71: Cast a string column to a number
-*Beginner* Â· `cast`
+*Beginner* . `cast`
 
-A column arrived as text â€” from a CSV read without `inferSchema` â€” and you need to do arithmetic on it.
+A column arrived as text - from a CSV read without `inferSchema` - and you need
 
 ### Example 72: Watch a failed cast produce null
-*Beginner* Â· `cast`
+*Beginner* . `cast`
 
 Find out what Spark does with a value that cannot be converted.
 
 ### Example 73: Measure what a cast destroyed
-*Intermediate* Â· `cast`, `isNull`, `count`
+*Intermediate* . `cast, isNull, count`
 
-Quantify how many values a cast turned into null, so a silent failure becomes a visible number.
+Quantify how many values a cast turned into null, so a silent failure becomes a
 
 ### Example 74: Use try_cast to be explicit about failure
-*Intermediate* Â· `expr`, `try_cast`
+*Intermediate* . `expr, try_cast`
 
 Signal in the code itself that a conversion is expected to fail sometimes.
 
 ### Example 75: Make bad casts raise with ANSI mode
-*Advanced* Â· `spark.conf.set`
+*Advanced* . `spark.conf.set`
 
 Configure Spark to fail loudly on an invalid cast instead of producing null.
 
 ### Example 76: Understand overflow in a narrowing cast
-*Intermediate* Â· `cast`
+*Intermediate* . `cast`
 
-Convert values that may not fit in the target type, and see what Spark does with the ones that do not.
+Convert values that may not fit in the target type, and see what Spark does
 
 ### Example 77: Use decimal for money, not double
-*Intermediate* Â· `DecimalType`, `cast`
+*Intermediate* . `DecimalType, cast`
 
-Add currency amounts and get the exact answer rather than a floating-point approximation.
+Add currency amounts and get the exact answer rather than a floating-point
 
 ### Example 78: Choose precision and scale
-*Intermediate* Â· `DecimalType`
+*Intermediate* . `DecimalType`
 
-Decide the two numbers in `DecimalType(p, s)` and see what happens when a value does not fit.
+Decide the two numbers in `DecimalType(p, s)` and see what happens when a value
 
 ### Example 79: Cast a string to a date
-*Beginner* Â· `to_date`, `cast`
+*Beginner* . `to_date, cast`
 
-Convert date text into a real date type so date arithmetic and comparisons work.
+Convert date text into a real date type so date arithmetic and comparisons
 
 ### Example 80: Cast a string to boolean
-*Beginner* Â· `cast`
+*Beginner* . `cast`
 
 Convert text flags into real booleans, and learn which spellings Spark accepts.
 
 ### Example 81: Write a cast two ways
-*Beginner* Â· `cast`
+*Beginner* . `cast`
 
 Choose between the string form and the type-object form of a cast.
 
 ### Example 82: Cast several columns at once
-*Intermediate* Â· `cast`, `select`
+*Intermediate* . `cast, select`
 
-Apply types to a DataFrame whose columns all arrived as strings, without writing one line per column.
+Apply types to a DataFrame whose columns all arrived as strings, without writing
 
 ### Example 83: Watch types coerce in arithmetic
-*Intermediate* Â· `arithmetic operators`
+*Intermediate* . `arithmetic operators`
 
 Determine the resulting type when operands of different types are combined.
 
 ### Example 84: Divide integers
-*Beginner* Â· `division operator`
+*Beginner* . `division operator`
 
 Divide two integers and establish what type comes back.
 
 ### Example 85: Watch nulls propagate through arithmetic
-*Beginner* Â· `arithmetic operators`, `coalesce`
+*Beginner* . `arithmetic operators, coalesce`
 
 Calculate a total across columns where one value may be missing.
 
 ### Example 86: Compare values of different types
-*Intermediate* Â· `comparison operators`
+*Intermediate* . `comparison operators`
 
-Compare a numeric column against a string literal and see how Spark resolves it.
+Compare a numeric column against a string literal and see how Spark resolves
 
 ### Example 87: Resolve types when unioning DataFrames
-*Intermediate* Â· `unionByName`
+*Intermediate* . `unionByName`
 
 Combine two DataFrames whose matching columns have different types.
 
 ### Example 88: Check a column's type before acting
-*Intermediate* Â· `df.schema`, `dtypes`
+*Intermediate* . `df.schema, dtypes`
 
 Write code that adapts to a column's type rather than assuming it.
 
 ### Example 89: Round-trip a number through a string safely
-*Advanced* Â· `cast`, `format_number`
+*Advanced* . `cast, format_number`
 
 Convert a number to text for output and back again without losing precision.
 
 ### Example 90: Fail fast on an unexpected schema
-*Advanced* Â· `df.schema`, `simpleString`
+*Advanced* . `df.schema, simpleString`
 
-Stop a pipeline at the boundary when incoming data does not match the expected contract.
+Stop a pipeline at the boundary when incoming data does not match the expected
 
 ### Example 91: Add a derived column
-*Beginner* Â· `withColumn`
+*Beginner* . `withColumn`
 
 Add a computed column to an existing DataFrame without rebuilding it.
 
 ### Example 92: Add a constant column
-*Beginner* Â· `lit`, `withColumn`
+*Beginner* . `lit, withColumn`
 
-Tag every row with a fixed value â€” a source system name, a load date, a version marker.
+Tag every row with a fixed value - a source system name, a load date, a version
 
 ### Example 93: Add several columns in one call
-*Intermediate* Â· `withColumns`
+*Intermediate* . `withColumns`
 
 Add three derived columns without chaining three separate calls.
 
 ### Example 94: Remove a column
-*Beginner* Â· `drop`
+*Beginner* . `drop`
 
-Discard a column that should not travel further â€” an internal key, or something sensitive.
+Discard a column that should not travel further - an internal key, or something
 
 ### Example 95: Remove several columns
-*Beginner* Â· `drop`
+*Beginner* . `drop`
 
 Discard a set of columns, computed at runtime rather than hard-coded.
 
 ### Example 96: Rename one column
-*Beginner* Â· `withColumnRenamed`
+*Beginner* . `withColumnRenamed`
 
 Change a single column's name while leaving everything else untouched.
 
 ### Example 97: Reorder columns
-*Beginner* Â· `select`
+*Beginner* . `select`
 
-Put columns in a specific order â€” to match a target table's layout, or simply for readability.
+Put columns in a specific order - to match a target table's layout, or simply
 
 ### Example 98: Replace a column in place
-*Beginner* Â· `withColumn`
+*Beginner* . `withColumn`
 
 Clean a column's values while keeping its name and position.
 
 ### Example 99: Build a column conditionally
-*Beginner* Â· `when`, `otherwise`
+*Beginner* . `when, otherwise`
 
 Derive a category from a numeric value, with a fallback for anything unmatched.
 
 ### Example 100: Write a column as a SQL expression
-*Intermediate* Â· `expr`, `selectExpr`
+*Intermediate* . `expr, selectExpr`
 
-Use SQL syntax for a derivation, where the SQL reads more clearly than the DataFrame API.
+Use SQL syntax for a derivation, where the SQL reads more clearly than the
 
 ### Example 101: Select columns by pattern
-*Advanced* Â· `colRegex`
+*Advanced* . `colRegex`
 
 Select every column whose name matches a pattern, without listing them.
 
 ### Example 102: Remove duplicate rows
-*Beginner* Â· `distinct`
+*Beginner* . `distinct`
 
 Collapse rows that are identical across every column.
 
 ### Example 103: Deduplicate on chosen columns
-*Intermediate* Â· `dropDuplicates`
+*Intermediate* . `dropDuplicates`
 
 Keep one row per business key, even when other columns differ.
 
 ### Example 104: Count distinct values in a column
-*Beginner* Â· `countDistinct`, `approx_count_distinct`
+*Beginner* . `countDistinct, approx_count_distinct`
 
 Find how many unique values a column holds.
 
 ### Example 105: Take a few rows, four ways
-*Beginner* Â· `limit`, `head`, `first`, `take`
+*Beginner* . `limit, head, first, take`
 
 Retrieve a small number of rows and understand what each method returns.
 
 ### Example 106: Sample rows reproducibly
-*Intermediate* Â· `sample`
+*Intermediate* . `sample`
 
 Take a random subset for development, and get the same subset every run.
 
 ### Example 107: Get quick summary statistics
-*Beginner* Â· `describe`
+*Beginner* . `describe`
 
 Get a fast overview of a numeric column's distribution.
 
 ### Example 108: Choose which statistics to compute
-*Intermediate* Â· `summary`
+*Intermediate* . `summary`
 
-Get percentiles as well as the basic statistics, without the ones you do not need.
+Get percentiles as well as the basic statistics, without the ones you do not
 
 ### Example 109: Sort a DataFrame
-*Beginner* Â· `orderBy`, `asc`, `desc`
+*Beginner* . `orderBy, asc, desc`
 
 Order rows by one column ascending and another descending.
 
 ### Example 110: Control where nulls sort
-*Intermediate* Â· `asc_nulls_last`, `desc_nulls_first`
+*Intermediate* . `asc_nulls_last, desc_nulls_first`
 
 Decide whether missing values appear at the top or the bottom of a sort.
 
 ### Example 111: Cache a DataFrame you will reuse
-*Intermediate* Â· `cache`, `count`
+*Intermediate* . `cache, count`
 
-A DataFrame is referenced several times in one job. Compute it once instead of recomputing it at every action.
+A DataFrame is referenced several times in one job. Compute it once instead of
 
 ### Example 112: Choose a storage level
-*Advanced* Â· `persist`, `StorageLevel`
+*Advanced* . `persist, StorageLevel`
 
-Cache data too large for memory alone, so Spark spills to disk instead of dropping it.
+Cache data too large for memory alone, so Spark spills to disk instead of
 
 ### Example 113: Release cached data
-*Intermediate* Â· `unpersist`
+*Intermediate* . `unpersist`
 
 Free the memory a cached DataFrame is holding once it is no longer needed.
 
 ### Example 114: Check whether a DataFrame is cached
-*Beginner* Â· `is_cached`, `storageLevel`
+*Beginner* . `is_cached, storageLevel`
 
-Determine the cache state of a DataFrame before deciding whether to cache it again.
+Determine the cache state of a DataFrame before deciding whether to cache it
 
 ### Example 115: Understand that caching is lazy
-*Intermediate* Â· `cache`, `count`
+*Intermediate* . `cache, count`
 
 Establish exactly when cached data is written to memory.
 
 ### Example 116: Increase the partition count
-*Intermediate* Â· `repartition`
+*Intermediate* . `repartition`
 
-Raise parallelism on a DataFrame that has too few partitions to use the available cores.
+Raise parallelism on a DataFrame that has too few partitions to use the
 
 ### Example 117: Reduce partitions without a full shuffle
-*Intermediate* Â· `coalesce`
+*Intermediate* . `coalesce`
 
 Combine partitions before writing, so the output is not thousands of tiny files.
 
 ### Example 118: Partition by a column
-*Advanced* Â· `repartition`
+*Advanced* . `repartition`
 
-Place all rows sharing a key on the same partition, so later grouping does not need to shuffle again.
+Place all rows sharing a key on the same partition, so later grouping does not
 
 ### Example 119: See how rows are spread across partitions
-*Intermediate* Â· `spark_partition_id`
+*Intermediate* . `spark_partition_id`
 
 Find out how many rows each partition holds.
 
 ### Example 120: Attach the partition id to each row
-*Intermediate* Â· `spark_partition_id`
+*Intermediate* . `spark_partition_id`
 
 Inspect which partition individual rows landed on, for debugging.
 
 ### Example 121: Detect skew from partition sizes
-*Advanced* Â· `spark_partition_id`, `summary`
+*Advanced* . `spark_partition_id, summary`
 
 Quantify how unevenly data is distributed, rather than eyeballing it.
 
 ### Example 122: Package a transformation with transform()
-*Advanced* Â· `transform`
+*Advanced* . `transform`
 
-Extract a reusable transformation so it can be tested and shared, without breaking the method chain.
+Extract a reusable transformation so it can be tested and shared, without
 
 ### Example 123: Chain several transforms
-*Advanced* Â· `transform`
+*Advanced* . `transform`
 
 Compose multiple reusable steps into one readable pipeline.
 
 ### Example 124: Find rows present in one DataFrame and not another
-*Intermediate* Â· `exceptAll`, `subtract`
+*Intermediate* . `exceptAll, subtract`
 
 Identify what changed between two versions of a dataset.
 
 ### Example 125: Compare two DataFrames for equality
-*Intermediate* Â· `exceptAll`, `count`
+*Intermediate* . `exceptAll, count`
 
 Determine whether two DataFrames hold exactly the same data.
 
 ### Example 126: Assert equality in a test
-*Advanced* Â· `chispa.assert_df_equality`
+*Advanced* . `chispa.assert_df_equality`
 
-Write a test that fails with a useful message when a transformation produces the wrong result.
+Write a test that fails with a useful message when a transformation produces the
 
 ### Example 127: Convert rows to dictionaries
-*Beginner* Â· `asDict`
+*Beginner* . `asDict`
 
 Turn collected rows into plain Python dictionaries for use outside Spark.
 
 ### Example 128: Convert a DataFrame to JSON strings
-*Intermediate* Â· `toJSON`
+*Intermediate* . `toJSON`
 
 Produce one JSON document per row, for a message queue or an HTTP payload.
 
 ### Example 129: Alias a DataFrame to disambiguate columns
-*Intermediate* Â· `alias`
+*Intermediate* . `alias`
 
-Give a DataFrame a name so its columns can be referenced unambiguously when two DataFrames share column names.
+Give a DataFrame a name so its columns can be referenced unambiguously when two
 
 ### Example 130: Stream rows to Python without collecting
-*Advanced* Â· `toLocalIterator`
+*Advanced* . `toLocalIterator`
 
 Process every row in Python when the full result would not fit in driver memory.
-
----
-
-â† [Back to main index](../../README.md)

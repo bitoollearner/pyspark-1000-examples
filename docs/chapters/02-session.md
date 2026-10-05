@@ -1,165 +1,161 @@
 # Chapter 2: Spark Session Management
 
-**30 examples** (21â€“50)
+**30 examples** (21-50)
 
-Difficulty mix: 11 Beginner Â· 18 Intermediate Â· 1 Advanced
+Difficulty mix: 1 Advanced . 11 Beginner . 18 Intermediate
 
-[ðŸ“” Open the notebook](../../notebooks/02-session.ipynb) Â· [ðŸ“– Read the chapter on Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+[Open the practice notebook](../../notebooks/02-session.ipynb) . [Read the chapter on Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
 ## Examples
 
 ### Example 21: Create a SparkSession the canonical way
-*Beginner* Â· `SparkSession.builder`, `appName`, `master`, `getOrCreate`
+*Beginner* . `SparkSession.builder, appName, master, getOrCreate`
 
-Write the session-creation block that belongs at the top of a standalone PySpark script.
+Write the session-creation block that belongs at the top of a standalone
 
 ### Example 22: getOrCreate returns the session you already have
-*Beginner* Â· `getOrCreate`, `getActiveSession`
+*Beginner* . `getOrCreate, getActiveSession`
 
 Establish whether calling the builder twice produces two sessions.
 
 ### Example 23: Give your application a findable name
-*Beginner* Â· `appName`
+*Beginner* . `appName`
 
 A cluster is running forty jobs. Make yours identifiable at a glance.
 
 ### Example 24: Configuration set after the session exists cannot reach the JVM
-*Intermediate* Â· `config`, `getOrCreate`
+*Intermediate* . `config, getOrCreate`
 
-Understand why a `.config()` call on the builder sometimes has no effect at all.
+Understand why a `.config()` call on the builder sometimes has no effect at
 
 ### Example 25: Tell static configuration from runtime-mutable
-*Intermediate* Â· `spark.conf.set`, `spark.conf.get`
+*Intermediate* . `spark.conf.set, spark.conf.get`
 
 Determine which settings you can still change from inside a running session.
 
 ### Example 26: Change a setting for one query, then restore it
-*Intermediate* Â· `spark.conf.set`, `spark.conf.get`
+*Intermediate* . `spark.conf.set, spark.conf.get`
 
-One aggregation needs a different shuffle width, without affecting anything else in the session.
+One aggregation needs a different shuffle width, without affecting anything
 
 ### Example 27: Reset a setting to its default
-*Intermediate* Â· `spark.conf.unset`
+*Intermediate* . `spark.conf.unset`
 
 Undo a configuration change without knowing what the original value was.
 
 ### Example 28: Isolate work with newSession()
-*Intermediate* Â· `newSession`
+*Intermediate* . `newSession`
 
-Run work that registers temporary views without those views colliding with another part of your application.
+Run work that registers temporary views without those views colliding with
 
 ### Example 29: Register a DataFrame as a temporary view
-*Beginner* Â· `createOrReplaceTempView`
+*Beginner* . `createOrReplaceTempView`
 
 Make a DataFrame queryable with SQL.
 
 ### Example 30: Mix SQL and the DataFrame API
-*Intermediate* Â· `sql`, `createOrReplaceTempView`, `filter`
+*Intermediate* . `sql, createOrReplaceTempView, filter`
 
-Express one step in SQL because it reads better there, and the rest in the DataFrame API.
+Express one step in SQL because it reads better there, and the rest in the
 
 ### Example 31: Share a view across sessions
-*Advanced* Â· `createOrReplaceGlobalTempView`
+*Advanced* . `createOrReplaceGlobalTempView`
 
-Make a view visible to every session in the application, not just the one that created it.
+Make a view visible to every session in the application, not just the one that
 
 ### Example 32: Inspect what is in the catalog
-*Intermediate* Â· `spark.catalog.listTables`, `currentDatabase`
+*Intermediate* . `spark.catalog.listTables, currentDatabase`
 
 Find out which views and tables the current session can see.
 
 ### Example 33: Drop a view when you are finished
-*Beginner* Â· `dropTempView`, `tableExists`
+*Beginner* . `dropTempView, tableExists`
 
 Remove a temporary view and confirm it is gone.
 
 ### Example 34: Control how much Spark logs
-*Beginner* Â· `setLogLevel`
+*Beginner* . `setLogLevel`
 
 Spark's default logging buries your own output. Turn it down.
 
 ### Example 35: Reach the SparkContext underneath
-*Intermediate* Â· `sparkContext`
+*Intermediate* . `sparkContext`
 
 Access the lower-level entry point that predates `SparkSession`.
 
 ### Example 36: Isolate work with newSession()
-*Intermediate* Â· `newSession`, `sparkContext`
+*Intermediate* . `newSession, sparkContext`
 
-Run work that needs its own temporary views and its own SQL configuration, without disturbing the session everything ...
+Run work that needs its own temporary views and its own SQL configuration,
 
 ### Example 37: Register a Python function for use in SQL
-*Intermediate* Â· `spark.udf.register`
+*Intermediate* . `spark.udf.register`
 
-You have a Python function encoding business logic and you want to call it from a SQL query.
+You have a Python function encoding business logic and you want to call it from
 
 ### Example 38: Create a view with SQL rather than the API
-*Beginner* Â· `spark.sql`, `CREATE TEMPORARY VIEW`
+*Beginner* . `spark.sql, CREATE TEMPORARY VIEW`
 
-Define a derived view entirely in SQL, for a codebase whose logic lives in `.sql` files.
+Define a derived view entirely in SQL, for a codebase whose logic lives in
 
 ### Example 39: Cache a view through the catalog
-*Intermediate* Â· `spark.catalog.cacheTable`, `isCached`
+*Intermediate* . `spark.catalog.cacheTable, isCached`
 
-A view is referenced several times in one job. Compute it once and keep the result in memory.
+A view is referenced several times in one job. Compute it once and keep the
 
 ### Example 40: Release cached memory
-*Intermediate* Â· `uncacheTable`, `clearCache`
+*Intermediate* . `uncacheTable, clearCache`
 
 Free memory held by a cached view once the job no longer needs it.
 
 ### Example 41: Drop a temporary view
-*Beginner* Â· `dropTempView`, `dropGlobalTempView`
+*Beginner* . `dropTempView, dropGlobalTempView`
 
 Remove a registered view when the work that needed it is finished.
 
 ### Example 42: Check a table exists before querying it
-*Beginner* Â· `spark.catalog.tableExists`
+*Beginner* . `spark.catalog.tableExists`
 
-Write code that adapts to whether a table is present, without relying on exception handling.
+Write code that adapts to whether a table is present, without relying on
 
 ### Example 43: Find and change the current database
-*Intermediate* Â· `currentDatabase`, `setCurrentDatabase`
+*Intermediate* . `currentDatabase, setCurrentDatabase`
 
 Determine which database unqualified table names resolve against.
 
 ### Example 44: See the session timezone change a result
-*Intermediate* Â· `spark.conf.set`, `to_timestamp`
+*Intermediate* . `spark.conf.set, to_timestamp`
 
-Demonstrate that the session timezone changes how timestamps are rendered, and restore the original setting.
+Demonstrate that the session timezone changes how timestamps are rendered, and
 
 ### Example 45: Toggle Adaptive Query Execution
-*Intermediate* Â· `spark.conf.set`
+*Intermediate* . `spark.conf.set`
 
 Turn AQE on and off, and understand why a book pins it off.
 
 ### Example 46: Report the versions in play
-*Beginner* Â· `spark.version`, `sys.version_info`
+*Beginner* . `spark.version, sys.version_info`
 
 Produce a one-line environment report for a bug report or job log.
 
 ### Example 47: Discover the functions Spark knows
-*Intermediate* Â· `spark.catalog.listFunctions`
+*Intermediate* . `spark.catalog.listFunctions`
 
 Check whether a function exists before writing a query around it.
 
 ### Example 48: Inspect a table's columns from the catalog
-*Intermediate* Â· `spark.catalog.listColumns`
+*Intermediate* . `spark.catalog.listColumns`
 
 Read a registered view's schema through the catalog rather than the DataFrame.
 
 ### Example 49: Write a reusable session factory
-*Intermediate* Â· `SparkSession.builder`, `getOrCreate`
+*Intermediate* . `SparkSession.builder, getOrCreate`
 
-Give a codebase one place where sessions are created, so tests and production share configuration without duplicating...
+Give a codebase one place where sessions are created, so tests and production
 
 ### Example 50: Shut a session down safely
-*Beginner* Â· `SparkSession.getActiveSession`, `stop`
+*Beginner* . `SparkSession.getActiveSession, stop`
 
-Release Spark's resources at the end of a script without stranding them on failure.
-
----
-
-â† [Back to main index](../../README.md)
+Release Spark's resources at the end of a script without stranding them on

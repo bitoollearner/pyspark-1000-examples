@@ -1,215 +1,211 @@
 # Chapter 20: Performance
 
-**40 examples** (861â€“900)
+**40 examples** (861-900)
 
-Difficulty mix: 7 Beginner Â· 18 Intermediate Â· 15 Advanced
+Difficulty mix: 15 Advanced . 7 Beginner . 18 Intermediate
 
-[ðŸ“” Open the notebook](../../notebooks/20-performance.ipynb) Â· [ðŸ“– Read the chapter on Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+[Open the practice notebook](../../notebooks/20-performance.ipynb) . [Read the chapter on Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
 ## Examples
 
 ### Example 861: Basic explain
-*Beginner* Â· `explain`
+*Beginner* . `explain`
 
 Print a DataFrame's physical execution plan.
 
 ### Example 862: Explain with all plan phases
-*Intermediate* Â· `explain(True)`
+*Intermediate* . `explain(True)`
 
 See all four plan phases: parsed, analyzed, optimized, and physical.
 
 ### Example 863: Formatted explain
-*Intermediate* Â· `explain formatted`
+*Intermediate* . `explain formatted`
 
 Use the formatted explain mode for a more readable plan.
 
 ### Example 864: Detecting shuffles in the plan
-*Intermediate* Â· `Exchange detection`
+*Intermediate* . `Exchange detection`
 
 Identify shuffles by looking for `Exchange` nodes in the plan.
 
 ### Example 865: Detecting broadcast joins
-*Intermediate* Â· `broadcast detection`
+*Intermediate* . `broadcast detection`
 
 Identify whether a join uses the broadcast strategy.
 
 ### Example 866: Detecting filter pushdown
-*Advanced* Â· `PushedFilters`
+*Advanced* . `PushedFilters`
 
 Verify that filters push down to the data source.
 
 ### Example 867: Whole-stage code generation
-*Advanced* Â· `WholeStageCodegen`
+*Advanced* . `WholeStageCodegen`
 
 See which parts of a plan use whole-stage code generation.
 
 ### Example 868: Explaining a windowed query
-*Advanced* Â· `window plan`
+*Advanced* . `window plan`
 
 See how a window function appears in the plan.
 
 ### Example 869: Default shuffle partitions
-*Beginner* Â· `spark.sql.shuffle.partitions`
+*Beginner* . `spark.sql.shuffle.partitions`
 
 Check the default partition count for shuffle operations.
 
 ### Example 870: DataFrame partition count
-*Beginner* Â· `getNumPartitions`
+*Beginner* . `getNumPartitions`
 
 Get the current partition count of a DataFrame.
 
 ### Example 871: Increase parallelism with repartition
-*Beginner* Â· `repartition`
+*Beginner* . `repartition`
 
 Increase a DataFrame's partition count for better parallelism.
 
 ### Example 872: Reduce partitions with coalesce
-*Beginner* Â· `coalesce`
+*Beginner* . `coalesce`
 
 Reduce a DataFrame's partition count without a full shuffle.
 
 ### Example 873: Repartition by column
-*Intermediate* Â· `repartition with column`
+*Intermediate* . `repartition with column`
 
-Redistribute rows so that all rows with the same key value land in the same partition.
+Redistribute rows so that all rows with the same key value land in
 
 ### Example 874: repartitionByRange
-*Advanced* Â· `repartitionByRange`
+*Advanced* . `repartitionByRange`
 
 Distribute rows into ordered ranges rather than hash buckets.
 
 ### Example 875: Basic cache
-*Beginner* Â· `cache`
+*Beginner* . `cache`
 
 Cache a DataFrame to avoid recomputation.
 
 ### Example 876: Persist with storage level
-*Intermediate* Â· `persist`, `StorageLevel`
+*Intermediate* . `persist, StorageLevel`
 
 Cache with an explicit storage level - memory, disk, or both.
 
 ### Example 877: Materialise cache with count
-*Intermediate* Â· `cache count trick`
+*Intermediate* . `cache count trick`
 
 Force the cache to materialise immediately rather than on first use.
 
 ### Example 878: Unpersist to release memory
-*Beginner* Â· `unpersist`
+*Beginner* . `unpersist`
 
 Release a cached DataFrame's memory when no longer needed.
 
 ### Example 879: When caching hurts
-*Intermediate* Â· `cache anti-pattern`
+*Intermediate* . `cache anti-pattern`
 
 Recognise cases where caching adds overhead without benefit.
 
 ### Example 880: Cache and lineage
-*Advanced* Â· `cache and lineage`
+*Advanced* . `cache and lineage`
 
 Understand what happens if a cached partition is lost.
 
 ### Example 881: Explicit broadcast hint
-*Intermediate* Â· `F.broadcast`
+*Intermediate* . `F.broadcast`
 
 Force a join to use broadcast strategy via the `broadcast` hint.
 
 ### Example 882: Auto-broadcast threshold
-*Intermediate* Â· `conf inspection`
+*Intermediate* . `conf inspection`
 
 Read the current auto-broadcast size threshold.
 
 ### Example 883: Disable auto-broadcast
-*Intermediate* Â· `conf.set`
+*Intermediate* . `conf.set`
 
 Temporarily disable auto-broadcast to see the sort-merge alternative.
 
 ### Example 884: Auto-broadcast decision by size
-*Advanced* Â· `auto-broadcast decision`
+*Advanced* . `auto-broadcast decision`
 
-Confirm that auto-broadcast decisions are based on estimated data size, not just intent.
+Confirm that auto-broadcast decisions are based on estimated data
 
 ### Example 885: Sort-merge join anatomy
-*Advanced* Â· `SortMergeJoin components`
+*Advanced* . `SortMergeJoin components`
 
 See the operators that make up a sort-merge join.
 
 ### Example 886: AQE status
-*Intermediate* Â· `AQE conf`
+*Intermediate* . `AQE conf`
 
-Check whether Adaptive Query Execution is enabled and read its sub-settings.
+Check whether Adaptive Query Execution is enabled and read its
 
 ### Example 887: Dynamic partition coalescing
-*Advanced* Â· `AQE coalesce`
+*Advanced* . `AQE coalesce`
 
 Read the settings that control AQE's dynamic partition coalescing.
 
 ### Example 888: Skew join handling
-*Advanced* Â· `AQE skewJoin`
+*Advanced* . `AQE skewJoin`
 
 Read the settings for AQE's skew-join mitigation.
 
 ### Example 889: Local shuffle reader
-*Advanced* Â· `AQE localShuffleReader`
+*Advanced* . `AQE localShuffleReader`
 
 Read the setting for AQE's local shuffle reader optimisation.
 
 ### Example 890: Detecting skew
-*Intermediate* Â· `groupBy`, `count`
+*Intermediate* . `groupBy, count`
 
 Detect partition skew by examining per-key row counts.
 
 ### Example 891: Salting a join key
-*Advanced* Â· `salting pattern`
+*Advanced* . `salting pattern`
 
 Redistribute a skewed join by adding a random salt to the join key.
 
 ### Example 892: Isolate hot keys for broadcast
-*Advanced* Â· `filter`, `broadcast`
+*Advanced* . `filter, broadcast`
 
 Handle a few known-hot keys separately from the rest.
 
 ### Example 893: Broadcast nested loop join
-*Advanced* Â· `BroadcastNestedLoopJoin`
+*Advanced* . `BroadcastNestedLoopJoin`
 
 See what happens when a join uses a non-equality condition.
 
 ### Example 894: Parquet versus CSV
-*Intermediate* Â· `file formats`
+*Intermediate* . `file formats`
 
 Compare Parquet and CSV for storage size and schema fidelity.
 
 ### Example 895: Compression codec comparison
-*Intermediate* Â· `compression option`
+*Intermediate* . `compression option`
 
-Compare the file sizes produced by different Parquet compression codecs.
+Compare the file sizes produced by different Parquet compression
 
 ### Example 896: Partition pruning
-*Advanced* Â· `partitionBy`, `PartitionFilters`
+*Advanced* . `partitionBy, PartitionFilters`
 
 Verify that filters on partition columns prune entire directories.
 
 ### Example 897: Column pruning
-*Intermediate* Â· `ReadSchema`
+*Intermediate* . `ReadSchema`
 
 Verify that unused columns are not read from Parquet.
 
 ### Example 898: sortWithinPartitions
-*Advanced* Â· `sortWithinPartitions`
+*Advanced* . `sortWithinPartitions`
 
 Sort rows within each partition without a full shuffle.
 
 ### Example 899: Common performance anti-patterns
-*Intermediate* Â· `anti-patterns`
+*Intermediate* . `anti-patterns`
 
 Enumerate common performance mistakes and their fixes.
 
 ### Example 900: Performance checklist
-*Intermediate* Â· `review`
+*Intermediate* . `review`
 
 Summarise the performance decisions this chapter has covered.
-
----
-
-â† [Back to main index](../../README.md)

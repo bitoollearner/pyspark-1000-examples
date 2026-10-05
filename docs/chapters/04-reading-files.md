@@ -1,315 +1,311 @@
 # Chapter 4: Reading Files
 
-**60 examples** (131â€“190)
+**60 examples** (131-190)
 
-Difficulty mix: 14 Beginner Â· 29 Intermediate Â· 17 Advanced
+Difficulty mix: 17 Advanced . 14 Beginner . 29 Intermediate
 
-[ðŸ“” Open the notebook](../../notebooks/04-reading-files.ipynb) Â· [ðŸ“– Read the chapter on Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+[Open the practice notebook](../../notebooks/04-reading-files.ipynb) . [Read the chapter on Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
 ## Examples
 
 ### Example 131: Read a CSV with a header
-*Beginner* Â· `read.csv`, `option`
+*Beginner* . `read.csv, option`
 
-Load a comma-separated file whose first line names the columns, and get usable types rather than strings.
+Load a comma-separated file whose first line names the columns, and get usable
 
 ### Example 132: Read a CSV with an explicit schema
-*Intermediate* Â· `read.schema`, `csv`
+*Intermediate* . `read.schema, csv`
 
-Read the same file against a declared contract, so the types cannot drift and the file is read only once.
+Read the same file against a declared contract, so the types cannot drift and
 
 ### Example 133: Read a CSV with no header
-*Beginner* Â· `read.csv`, `toDF`
+*Beginner* . `read.csv, toDF`
 
 Load a file whose first line is data, not column names.
 
 ### Example 134: Read a file with a different delimiter
-*Beginner* Â· `option("sep")`
+*Beginner* . `option("sep")`
 
 Read a pipe-delimited file, since not every "CSV" uses commas.
 
 ### Example 135: Handle quoted fields
-*Intermediate* Â· `option("quote")`, `option("escape")`
+*Intermediate* . `option("quote"), option("escape")`
 
 Read a file where a field contains the delimiter, protected by quotes.
 
 ### Example 136: Discard rows that do not fit
-*Intermediate* Â· `option("mode"`, `"DROPMALFORMED")`
+*Intermediate* . `option("mode", "DROPMALFORMED")`
 
 Read a file containing a row with too many fields, keeping only what parses.
 
 ### Example 137: Capture the rows that failed
-*Advanced* Â· `columnNameOfCorruptRecord`
+*Advanced* . `columnNameOfCorruptRecord`
 
-Read a file while keeping the raw text of every row that could not be parsed, so the failures can be investigated rat...
+Read a file while keeping the raw text of every row that could not be parsed, so
 
 ### Example 138: Refuse to read a file with bad rows
-*Intermediate* Â· `option("mode"`, `"FAILFAST")`
+*Intermediate* . `option("mode", "FAILFAST")`
 
-Make the job fail rather than proceed when the source does not match the contract.
+Make the job fail rather than proceed when the source does not match the
 
 ### Example 139: Treat specific strings as null
-*Intermediate* Â· `option("nullValue")`, `option("emptyValue")`
+*Intermediate* . `option("nullValue"), option("emptyValue")`
 
-Handle a file where missing data is written as a placeholder rather than left blank.
+Handle a file where missing data is written as a placeholder rather than left
 
 ### Example 140: Parse dates during the read
-*Intermediate* Â· `option("dateFormat")`
+*Intermediate* . `option("dateFormat")`
 
 Read date text into a real date type in one step, with an explicit format.
 
 ### Example 141: Read every file in a directory
-*Beginner* Â· `read.csv`
+*Beginner* . `read.csv`
 
 Load a folder of daily extracts as a single DataFrame.
 
 ### Example 142: Read only the files that match a pattern
-*Intermediate* Â· `read.csv with a glob`
+*Intermediate* . `read.csv with a glob`
 
 Read a subset of a directory, selected by filename.
 
 ### Example 143: Record which file each row came from
-*Intermediate* Â· `input_file_name`, `regexp_extract`
+*Intermediate* . `input_file_name, regexp_extract`
 
-Add the source filename to every row, so a bad record can be traced back to its file.
+Add the source filename to every row, so a bad record can be traced back to its
 
 ### Example 144: Read from an explicit list of paths
-*Intermediate* Â· `read.csv with a list`
+*Intermediate* . `read.csv with a list`
 
-Read exactly the files you intend, named individually rather than matched by pattern.
+Read exactly the files you intend, named individually rather than matched by
 
 ### Example 145: Trim whitespace as you read
-*Beginner* Â· `ignoreLeadingWhiteSpace`, `ignoreTrailingWhiteSpace`
+*Beginner* . `ignoreLeadingWhiteSpace, ignoreTrailingWhiteSpace`
 
-Strip padding around field values at the read boundary, before it becomes a join key.
+Strip padding around field values at the read boundary, before it becomes a join
 
 ### Example 146: Read a field containing a newline
-*Advanced* Â· `option("multiLine")`
+*Advanced* . `option("multiLine")`
 
 Read a CSV where a quoted field spans several lines.
 
 ### Example 147: Read a file in a specific encoding
-*Intermediate* Â· `option("encoding")`
+*Intermediate* . `option("encoding")`
 
 Read a file containing accented characters, and see what a wrong encoding does.
 
 ### Example 148: Read a plain text file
-*Beginner* Â· `read.text`
+*Beginner* . `read.text`
 
 Load a file with no delimiter structure at all, one row per line.
 
 ### Example 149: Parse fixed-width records
-*Advanced* Â· `substring`, `trim`, `cast`
+*Advanced* . `substring, trim, cast`
 
 Split a fixed-width extract into columns using character positions.
 
 ### Example 150: Read each file as a single string
-*Advanced* Â· `option("wholetext")`
+*Advanced* . `option("wholetext")`
 
 Load whole files intact, for formats where a line is not a meaningful unit.
 
 ### Example 151: Read newline-delimited JSON
-*Beginner* Â· `read.json`
+*Beginner* . `read.json`
 
-Load a file holding one JSON document per line, the format most APIs and log shippers produce.
+Load a file holding one JSON document per line, the format most APIs and log
 
 ### Example 152: Read a JSON file containing an array
-*Intermediate* Â· `option("multiLine")`
+*Intermediate* . `option("multiLine")`
 
-Load a file that wraps its records in a single JSON array, as a REST response would.
+Load a file that wraps its records in a single JSON array, as a REST response
 
 ### Example 153: Reach into a nested structure
-*Beginner* Â· `col with dot notation`
+*Beginner* . `col with dot notation`
 
 Read a field buried two levels inside a nested JSON document.
 
 ### Example 154: Flatten a nested structure
-*Intermediate* Â· `select with dot notation`
+*Intermediate* . `select with dot notation`
 
-Convert a nested document into flat columns for a consumer that expects a plain table.
+Convert a nested document into flat columns for a consumer that expects a plain
 
 ### Example 155: Expand an array into rows
-*Intermediate* Â· `explode`, `size`
+*Intermediate* . `explode, size`
 
 Turn a document containing a list of items into one row per item.
 
 ### Example 156: Supply a schema for JSON
-*Intermediate* Â· `read.schema`, `json`
+*Intermediate* . `read.schema, json`
 
 Read JSON without letting Spark scan the file to work out its shape.
 
 ### Example 157: Capture unparseable JSON
-*Advanced* Â· `columnNameOfCorruptRecord`
+*Advanced* . `columnNameOfCorruptRecord`
 
 Read JSON while keeping the raw text of documents that could not be parsed.
 
 ### Example 158: Parse JSON held in a column
-*Advanced* Â· `from_json`, `schema_of_json`
+*Advanced* . `from_json, schema_of_json`
 
-Extract fields from a column whose values are JSON strings â€” a common shape in event tables and message queues.
+Extract fields from a column whose values are JSON strings - a common shape in
 
 ### Example 159: Read Parquet
-*Beginner* Â· `read.parquet`
+*Beginner* . `read.parquet`
 
 Load a Parquet dataset, the default storage format for analytical data.
 
 ### Example 160: See that Parquet carries its own schema
-*Beginner* Â· `printSchema`
+*Beginner* . `printSchema`
 
 Confirm that types survive a round trip through Parquet, unlike CSV.
 
 ### Example 161: Read only the columns you need
-*Intermediate* Â· `select`, `explain`
+*Intermediate* . `select, explain`
 
 Confirm that selecting a few columns from Parquet avoids reading the rest.
 
 ### Example 162: Read a partitioned directory
-*Intermediate* Â· `read.parquet`
+*Intermediate* . `read.parquet`
 
-Load a dataset written into directories named by column value, and recover those columns.
+Load a dataset written into directories named by column value, and recover those
 
 ### Example 163: Filter on a partition column
-*Advanced* Â· `filter`, `explain`
+*Advanced* . `filter, explain`
 
-Confirm that filtering on a partition column skips entire directories rather than scanning and discarding rows.
+Confirm that filtering on a partition column skips entire directories rather
 
 ### Example 164: Read ORC
-*Beginner* Â· `read.orc`
+*Beginner* . `read.orc`
 
 Load an ORC dataset, the columnar format common in Hive environments.
 
 ### Example 165: Read Avro
-*Intermediate* Â· `format("avro")`
+*Intermediate* . `format("avro")`
 
-Load an Avro dataset, the row-oriented format used for streaming and message payloads.
+Load an Avro dataset, the row-oriented format used for streaming and message
 
 ### Example 166: Read Delta
-*Intermediate* Â· `format("delta")`
+*Intermediate* . `format("delta")`
 
-Load a Delta table â€” Parquet with a transaction log on top.
+Load a Delta table - Parquet with a transaction log on top.
 
 ### Example 167: Confirm the formats agree
-*Intermediate* Â· `read across formats`
+*Intermediate* . `read across formats`
 
 Verify that the same data read from four formats produces identical row counts.
 
 ### Example 168: Read a Hive-partitioned CSV directory
-*Intermediate* Â· `read.csv`
+*Intermediate* . `read.csv`
 
-Read CSV files stored in `column=value` directories and recover the partition column.
+Read CSV files stored in `column=value` directories and recover the partition
 
 ### Example 169: Recover partition columns with basePath
-*Advanced* Â· `option("basePath")`
+*Advanced* . `option("basePath")`
 
 Read one partition directly while still getting the partition column back.
 
 ### Example 170: Choose a format deliberately
-*Intermediate* Â· `comparison`
+*Intermediate* . `comparison`
 
-Summarise what each format costs and offers, as a decision you make once per dataset.
+Summarise what each format costs and offers, as a decision you make once per
 
 ### Example 171: Read a compressed file
-*Beginner* Â· `read.csv`
+*Beginner* . `read.csv`
 
 Load a gzip-compressed CSV without decompressing it first.
 
 ### Example 172: Use the generic reader
-*Beginner* Â· `read.format`, `load`
+*Beginner* . `read.format, load`
 
 Write a reader whose format is decided at runtime rather than in the code.
 
 ### Example 173: Filter files by name
-*Intermediate* Â· `option("pathGlobFilter")`
+*Intermediate* . `option("pathGlobFilter")`
 
 Read a directory but skip files whose names do not match a pattern.
 
 ### Example 174: Read nested directories
-*Intermediate* Â· `option("recursiveFileLookup")`
+*Intermediate* . `option("recursiveFileLookup")`
 
 Read every file under a directory tree, ignoring the `column=value` convention.
 
 ### Example 175: Read only recently modified files
-*Advanced* Â· `option("modifiedAfter")`
+*Advanced* . `option("modifiedAfter")`
 
-Process only files that arrived after a given moment, without tracking state yourself.
+Process only files that arrived after a given moment, without tracking state
 
 ### Example 176: Read XML
-*Intermediate* Â· `format("xml")`, `option("rowTag")`
+*Intermediate* . `format("xml"), option("rowTag")`
 
 Load an XML document, treating a repeated element as the row unit.
 
 ### Example 177: Control how many partitions a read produces
-*Advanced* Â· `spark.sql.files.maxPartitionBytes`
+*Advanced* . `spark.sql.files.maxPartitionBytes`
 
 Influence the parallelism of a file read by changing the target partition size.
 
 ### Example 178: Read text with a custom line separator
-*Advanced* Â· `option("lineSep")`
+*Advanced* . `option("lineSep")`
 
 Read a file whose records are separated by something other than a newline.
 
 ### Example 179: Reduce the cost of schema inference
-*Advanced* Â· `option("samplingRatio")`
+*Advanced* . `option("samplingRatio")`
 
 Infer a schema from part of a file rather than all of it.
 
 ### Example 180: Trust the schema over the header
-*Advanced* Â· `option("enforceSchema")`
+*Advanced* . `option("enforceSchema")`
 
-Decide what happens when a file's header names disagree with your declared schema.
+Decide what happens when a file's header names disagree with your declared
 
 ### Example 181: Detect a repeated header line
-*Intermediate* Â· `filter`
+*Intermediate* . `filter`
 
-Find header rows that appear in the middle of a file, a common artefact of concatenated exports.
+Find header rows that appear in the middle of a file, a common artefact of
 
 ### Example 182: Read several sources into one DataFrame
-*Intermediate* Â· `unionByName`
+*Intermediate* . `unionByName`
 
 Combine data arriving in two different formats into a single DataFrame.
 
 ### Example 183: Check a file against a contract before using it
-*Advanced* Â· `schema comparison`
+*Advanced* . `schema comparison`
 
 Refuse to process a file whose structure has changed.
 
 ### Example 184: Split a read into clean and quarantined rows
-*Advanced* Â· `_corrupt_record`, `filter`
+*Advanced* . `_corrupt_record, filter`
 
-Process the rows that parsed while keeping the ones that did not, for later investigation.
+Process the rows that parsed while keeping the ones that did not, for later
 
 ### Example 185: Build a reusable reader
-*Advanced* Â· `function composition`
+*Advanced* . `function composition`
 
-Capture the reading conventions a project has agreed on, so every job applies them identically.
+Capture the reading conventions a project has agreed on, so every job applies
 
 ### Example 186: Count files before reading them
-*Intermediate* Â· `input_file_name`, `countDistinct`
+*Intermediate* . `input_file_name, countDistinct`
 
-Establish how many files contributed to a DataFrame, to confirm you read what you expected.
+Establish how many files contributed to a DataFrame, to confirm you read what
 
 ### Example 187: Handle a missing path gracefully
-*Intermediate* Â· `exception handling`
+*Intermediate* . `exception handling`
 
 Decide what a job should do when the directory it expects is not there.
 
 ### Example 188: Preview a file cheaply
-*Beginner* Â· `read.text`, `limit`
+*Beginner* . `read.text, limit`
 
-Look at the first few lines of an unfamiliar file before writing a reader for it.
+Look at the first few lines of an unfamiliar file before writing a reader for
 
 ### Example 189: Compare partition counts across formats
-*Advanced* Â· `rdd.getNumPartitions`
+*Advanced* . `rdd.getNumPartitions`
 
 See how the storage format affects the parallelism of a read.
 
 ### Example 190: Choose read options deliberately
-*Intermediate* Â· `review`
+*Intermediate* . `review`
 
-Summarise the decisions every read makes, whether or not you make them consciously.
-
----
-
-â† [Back to main index](../../README.md)
+Summarise the decisions every read makes, whether or not you make them
