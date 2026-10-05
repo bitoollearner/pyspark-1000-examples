@@ -127,18 +127,13 @@ The book is organised in 8 parts covering 22 chapters and 1,000 examples:
 
 ## Datasets
 
-The practice image bakes in a canonical dataset spine seeded from a fixed random value, so every reader works with byte-identical data. See [datasets/README.md](datasets/README.md) for the full list.
+The practice image bakes in all datasets the examples reference — 7 core
+CSVs, 15 raw messy files for Chapter 4, and Parquet/ORC/Avro/Delta variants
+for Chapters 5 and 21. Everything is seeded from a fixed random value, so
+every reader works with byte-identical data.
 
-Running the datasets fresh locally (outside the image):
-
-```bash
-# Core CSVs + raw messy files (no Spark needed)
-pip install faker pandas
-python datasets/generate.py --core
-
-# Add binary format variants (needs Spark + Delta on classpath)
-python datasets/generate.py --formats
-```
+See [datasets/README.md](datasets/README.md) for the full list, schemas,
+and the generator script if you want to regenerate at a different scale.
 
 ---
 
