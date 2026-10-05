@@ -44,3 +44,10 @@ dist/
 build/
 
 practice/
+
+# Build artifacts and local-only folders
+practice/
+*.log
+__pycache__/
+.ipynb_checkpoints/
+
