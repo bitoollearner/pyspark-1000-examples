@@ -1,10 +1,10 @@
 # PySpark: 1,000 Examples - Companion Code
 
-> Official code companion for the eBook **[PySpark: 1,000 Examples: A Practical Reference for Data Engineers](https://www.amazon.com/dp/B0DXXXXXXX)** - available on Amazon Kindle.
+> Official code companion for the eBook **[PySpark: 1,000 Examples: A Practical Reference for Data Engineers](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)** - available on Amazon Kindle.
 
 This repository contains the reference environment and dataset generator for the book. Combined with the Docker image, it is everything you need to practice the 1,000 examples locally - matching the exact environment they were verified against.
 
-The book itself (narrative, explanations, worked solutions, common mistakes, pattern insights) is not included here. Get it on [Amazon Kindle](https://www.amazon.com/dp/B0DXXXXXXX).
+The book itself (narrative, explanations, worked solutions, common mistakes, pattern insights) is not included here. Get it on [Amazon Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN).
 
 ---
 
@@ -54,7 +54,7 @@ Why type the code yourself? Reading code is not the same as writing it. Typing `
 | `docs/SETUP.md` | Detailed step-by-step setup guide |
 | `docs/chapters/` | Index of every chapter and example in the book |
 | `docs/function-index.md` | Alphabetical index of PySpark functions covered |
-| `docs/errata.md` | Corrections found after publication (report yours via Issues!) |
+| `docs/errata.md` | Corrections found after publication (report yours via Issues) |
 | `conf/` | Spark configuration (log4j2, spark-defaults) |
 | `scripts/` | Utilities: environment verifier, chapter-index generator |
 | `datasets/` | Dataset generator (`generate.py`) - produces the data every example references |
@@ -127,13 +127,9 @@ The book is organised in 8 parts covering 22 chapters and 1,000 examples:
 
 ## Datasets
 
-The practice image bakes in all datasets the examples reference — 7 core
-CSVs, 15 raw messy files for Chapter 4, and Parquet/ORC/Avro/Delta variants
-for Chapters 5 and 21. Everything is seeded from a fixed random value, so
-every reader works with byte-identical data.
+The practice image bakes in all datasets the examples reference - 7 core CSVs, 15 raw messy files for Chapter 4, and Parquet/ORC/Avro/Delta variants for Chapters 5 and 21. Everything is seeded from a fixed random value, so every reader works with byte-identical data.
 
-See [datasets/README.md](datasets/README.md) for the full list, schemas,
-and the generator script if you want to regenerate at a different scale.
+See [datasets/README.md](datasets/README.md) for the full list, schemas, and the generator script if you want to regenerate at a different scale.
 
 ---
 
@@ -149,7 +145,7 @@ and the generator script if you want to regenerate at a different scale.
 - **Recommendation** - best practice
 - **Pattern Insight** - how this generalizes
 
-**Get the book:** [Amazon Kindle](https://www.amazon.com/dp/B0DXXXXXXX)
+**Get the book:** [Amazon Kindle](https://www.amazon.com/dp/YOUR-KINDLE-ASIN)
 
 ---
 
@@ -168,7 +164,7 @@ Please check `docs/errata.md` before reporting to avoid duplicates.
 ## License
 
 - **Code** in `scripts/`, `conf/`, `datasets/generate.py`, and the Dockerfiles: [MIT License](LICENSE) - do whatever you want, commercial use OK.
-- **The book itself** (narrative, explanations, worked solutions, structure, cover, images): Copyright (c) 2026 @bilearner. All rights reserved. Available on Amazon Kindle.
+- **The book itself** (narrative, explanations, worked solutions, structure, cover, images): Copyright (c) 2026 Bi Learner. All rights reserved. Available on Amazon Kindle.
 - **Chapter indexes** in `docs/chapters/`: CC BY 4.0 - please attribute if you republish.
 
 ---
@@ -183,4 +179,4 @@ If this book saved you time, the best thing you can do is:
 
 ---
 
-Made with care by [Bi Learner](https://www.youtube.com/@bilearner). Reach out on YouTube for tutorials and updates.
+Made with care by Bi Learner. Reach out on YouTube for tutorials and updates.
